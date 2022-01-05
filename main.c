@@ -6,10 +6,9 @@
 #include <sys/wait.h>
 #include "./libft/libft.h"
 
-void call(char *pathname) {
+void call(char *pathname, char **argv) {
     // printf("pathname:%s\n", pathname);
     pid_t pid = fork();
-    char * const argv[] = {"ls"};
     if (pid == 0)
         execve(pathname, argv, NULL);
     int sts;
@@ -17,9 +16,10 @@ void call(char *pathname) {
 }
 
 void exec(char *envp[], char *command) {
-    printf("%s\n", command);
 
-    char *str;
+    char **commands = ft_split(command, ' ');
+
+    char *str = commands[0];
     while (*envp)
     {
         if (ft_strnstr(*envp, "PATH", 4))
@@ -33,12 +33,12 @@ void exec(char *envp[], char *command) {
     str++;
     char **ls = ft_split(str, ':');
 
-    command = ft_strjoin("/", command);
+    command = ft_strjoin("/", commands[0]);
     while (*ls) {
-        // printf("%s\n", ft_strjoin(*ls, command));
+        // printf("%s\n", ft_strjoin(*ls, command)c);
         int ok = access(ft_strjoin(*ls, command), X_OK);
         if (ok == F_OK)
-            call(ft_strjoin(*ls, command));
+            call(ft_strjoin(*ls, command), commands);
         ls++;
     }
     if (*ls) {
