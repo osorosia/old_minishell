@@ -1,10 +1,12 @@
-SRCS = main.c
+SRCS = main.c \
+	tokenize.c
 OBJS = $(SRCS:.c=.o)
 
 all: minishell
 
 minishell: $(OBJS)
-	gcc -o $@ $^ ./libft/libft.a
+	make -C ./libft
+	gcc -fsanitize=address -o $@ $^ ./libft/libft.a -L/usr/include -lreadline
 
 clean:
 	rm -f $(OBJS)
