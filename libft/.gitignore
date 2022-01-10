@@ -1,3 +1,6 @@
+**/libftTester/
+**/.vscode/
+
 **/*.a
 **/*.o
 **/*.gch

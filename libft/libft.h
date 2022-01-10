@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/07 20:47:03 by rnishimo          #+#    #+#             */
-/*   Updated: 2021/11/13 10:08:21 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/09 22:41:47 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 # include <stdbool.h>
 # include <unistd.h>
 # include <sys/errno.h>
+
+# define FD_MAX 256
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 32
+# endif
 
 typedef struct s_list
 {
@@ -62,13 +67,20 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 t_list	*ft_lstnew(void *content);
-void	ft_lstadd_front(t_list **lst, t_list *new);
+void	ft_lstadd_front(t_list **lst, t_list *new_lst);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstadd_back(t_list **lst, t_list *new_lst);
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+// additional
+bool	ft_isnumber(char *str);
+char	*ft_strdup_to_c(const char *s1, char c);
+char	*ft_strndup(const char *s1, size_t n);
+size_t	ft_strlen_to_c(const char *str, const char c);
+char	*get_next_line(int fd);
 
 #endif

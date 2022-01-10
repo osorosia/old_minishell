@@ -6,7 +6,7 @@
 #    By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/08 19:29:20 by rnishimo          #+#    #+#              #
-#    Updated: 2021/11/12 02:01:05 by rnishimo         ###   ########.fr        #
+#    Updated: 2022/01/09 23:30:21 by rnishimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,25 +48,24 @@ SRCS = ft_isalpha.c \
 		ft_putchar_fd.c \
 		ft_putstr_fd.c \
 		ft_putendl_fd.c \
-		ft_putnbr_fd.c
-SRCS_BONUS = ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c
-ifdef WITH_BONUS
-	SRCS += $(SRCS_BONUS)
-endif
+		ft_putnbr_fd.c \
+		ft_lstnew.c \
+		ft_lstadd_front.c \
+		ft_lstsize.c \
+		ft_lstlast.c \
+		ft_lstadd_back.c \
+		ft_lstdelone.c \
+		ft_lstclear.c \
+		ft_lstiter.c \
+		ft_lstmap.c \
+		ft_isnumber.c \
+		get_next_line.c \
+
 OBJS = $(SRCS:.c=.o)
-OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) libft.h
 	$(AR) $(NAME) $(OBJS)
 
 .c.o: $(SRCS)
@@ -81,7 +80,13 @@ fclean: clean
 
 re: fclean all
 
-bonus:
-	make WITH_BONUS=1
+bonus: all
 
-.PHONY: all clean fclean re bonus
+test: all
+	cd ./.test && bash ./test.sh
+
+tester: all
+	if [ ! -d ./libftTester ]; then git clone -q https://github.com/Tripouille/libftTester.git; fi
+	cd libftTester && make m b
+
+.PHONY: all clean fclean re bonus test tester
