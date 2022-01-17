@@ -6,7 +6,7 @@
 #    By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 06:15:47 by rnishimo          #+#    #+#              #
-#    Updated: 2022/01/17 06:55:38 by rnishimo         ###   ########.fr        #
+#    Updated: 2022/01/17 07:29:05 by rnishimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,9 @@ SRCS = $(filter-out %_test.c, $(SRC))
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
+
+run: all
+	./$(NAME)
 
 $(NAME): $(OBJS)
 	make -C ./libft
