@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 06:16:30 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/17 07:14:55 by rnishimo         ###   ########.fr       */
+/*   Created: 2022/01/17 06:23:38 by rnishimo          #+#    #+#             */
+/*   Updated: 2022/01/17 07:11:57 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-void error(char *str)
-{
-    ft_putstr_fd(str, 2);
-    exit(1);
-}
-
-void debug(char *format, ...)
-{
-    va_list ap;
-    va_start(ap, format);
-    vfprintf(stderr, format, ap);
-    va_end(ap);
+int exec(char *cmds[], char *envp[]) {
+    int sts; // command not found
+    pid_t pid = fork();
+    if (pid == 0) {
+        execve(cmds[0], cmds, envp);
+        exit(EXIT_CMD_NOT_FOUND);
+    }
+    waitpid(pid, &sts, 0);
+    return WEXITSTATUS(sts);
 }

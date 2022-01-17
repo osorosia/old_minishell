@@ -6,15 +6,21 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/17 06:15:45 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/17 07:11:33 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft/libft.h"
 #include <stdio.h>
+#include <stdarg.h>
 #include <stdbool.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
 #include <readline/readline.h>
 #include <readline/history.h>
+
+#define EXIT_CMD_NOT_FOUND 127
 
 typedef enum e_token_kind{
 	TK_OP = 0,
@@ -42,8 +48,16 @@ void free_lexer(t_token *tok);
 void debug_lexer(t_token *token);
 
 //
+// exec
+//
+
+// exec.c
+int exec(char *cmds[], char *envp[]);
+
+//
 // minishell
 //
 
 // utils.c
 void error(char *str);
+void debug(char *format, ...);
