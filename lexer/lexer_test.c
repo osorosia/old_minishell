@@ -32,23 +32,27 @@ void test1() {
     print_end();
 }
 
-void test2() {
-    const char *p = "foo | hoge";
+void test_pipe() {
+    const char *p = "foo0|foo1 | foo2 || foo3";
     print_start(p);
 
     t_token *tok = lexer(p);
     t_token *head = tok;
 
-    assert_token(&tok, TK_WORD, "foo");
+    assert_token(&tok, TK_WORD, "foo0");
     assert_token(&tok, TK_OP,   "|");
-    assert_token(&tok, TK_WORD, "hoge");
+    assert_token(&tok, TK_WORD, "foo1");
+    assert_token(&tok, TK_OP,   "|");
+    assert_token(&tok, TK_WORD, "foo2");
+    assert_token(&tok, TK_OP,   "|");
+    assert_token(&tok, TK_OP,   "|");
+    assert_token(&tok, TK_WORD, "foo3");
     assert_token(&tok, TK_EOF,  "");
 
     free_lexer(head);
     print_end();
     return true;
 }
-
 
 int main(int argc, char **argv) {
     // manual test
@@ -62,7 +66,7 @@ int main(int argc, char **argv) {
     // automatic test
     setvbuf(stdout, NULL, _IONBF, 0);
     test1(); // foo
-    test2(); // foo | hoge
+    test_pipe(); // foo0|foo1 | foo2 || foo3
 
     printf("OK\n");
 }
