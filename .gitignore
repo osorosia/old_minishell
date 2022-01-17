@@ -2,6 +2,8 @@
 
 **/*.gch
 **/*.o
+**/temp*
+**/tmp*
 
 **/a.out
 **/minishell
