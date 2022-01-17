@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/17 21:40:24 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/17 21:58:01 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,18 @@ struct s_token {
 	t_token			*next;
 	char			*str;
 	size_t			len;
+};
+
+typedef struct s_env t_env;
+struct s_env {
+	t_env	*next;	// linked list
+	char	*name;	// e.g. PATH
+	char	*str;	// e.g. /usr/bin:/bin
+};
+
+typedef struct s_minishell t_minishell;
+struct s_minishell {
+	t_env	*envs;	// environment variables
 };
 
 //
