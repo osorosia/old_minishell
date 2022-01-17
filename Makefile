@@ -1,6 +1,7 @@
-SRCS = $(wildcard ./*.c) \
+SRC = $(wildcard ./*.c) \
 	$(wildcard ./lexer/*.c) \
 
+SRCS = $(filter-out %_test.c, $(SRC))
 OBJS = $(SRCS:.c=.o)
 
 all: minishell
@@ -14,4 +15,3 @@ clean:
 
 fclean: clean
 	rm -f minishell
-
