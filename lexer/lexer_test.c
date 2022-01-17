@@ -83,6 +83,39 @@ void test_redirect() {
     return true;
 }
 
+void test_quote() {
+    const char *p = "'foo0' \"foo1\" ''foo2'' \"\"foo3\"\"";
+    print_start(p);
+
+    t_token *tok = lexer(p);
+    t_token *head = tok;
+
+    assert_token(&tok, TK_OP,   "'");
+    assert_token(&tok, TK_WORD, "foo0");
+    assert_token(&tok, TK_OP,   "'");
+
+    assert_token(&tok, TK_OP,   "\"");
+    assert_token(&tok, TK_WORD, "foo1");
+    assert_token(&tok, TK_OP,   "\"");
+
+    assert_token(&tok, TK_OP,   "'");
+    assert_token(&tok, TK_OP,   "'");
+    assert_token(&tok, TK_WORD, "foo2");
+    assert_token(&tok, TK_OP,   "'");
+    assert_token(&tok, TK_OP,   "'");
+
+    assert_token(&tok, TK_OP,   "\"");
+    assert_token(&tok, TK_OP,   "\"");
+    assert_token(&tok, TK_WORD, "foo3");
+    assert_token(&tok, TK_OP,   "\"");
+    assert_token(&tok, TK_OP,   "\"");
+
+    assert_token(&tok, TK_EOF,  "");
+
+    free_lexer(head);
+    print_end();
+    return true;
+}
 int main(int argc, char **argv) {
     // manual test
     if (argc == 2) {
@@ -97,6 +130,7 @@ int main(int argc, char **argv) {
     test1();            // foo
     test_pipe();        // foo0|foo1 | foo2 || foo3
     test_redirect();    // foo0>foo1>>foo2<foo3<<foo4<<<foo5>>>foo6
+    test_quote();       // 'foo0' "foo1" ''foo2'' ""foo3""
 
     printf("OK\n");
 }
