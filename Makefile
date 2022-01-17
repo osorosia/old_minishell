@@ -6,7 +6,7 @@
 #    By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 06:15:47 by rnishimo          #+#    #+#              #
-#    Updated: 2022/01/17 06:15:48 by rnishimo         ###   ########.fr        #
+#    Updated: 2022/01/17 06:20:58 by rnishimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,8 @@ NAME = minishell
 SRC = $(wildcard ./*.c) \
 	$(wildcard ./lexer/*.c) \
 	$(wildcard ./parser/*.c) \
+	$(wildcard ./expander/*.c) \
+	$(wildcard ./exec/*.c) \
 
 SRCS = $(filter-out %_test.c, $(SRC))
 OBJS = $(SRCS:.c=.o)
@@ -36,6 +38,8 @@ test: all
 	@echo ------test------
 	@cd lexer && make test
 	@cd parser && make test
+	@cd expander && make test
+	@cd exec && make test
 	@echo -------OK-------
 
 .PHONY: all clean fclean re test
