@@ -7,9 +7,11 @@ int main() {
     read_history(".my_history"); // [ToDo]historyファイルが無いときの動作の検証
     while (1) {
         char *str = readline(prompt);
-        t_token *tok = tokenize(str);
-        debug_tokenize(tok);
-        // printf("%s\n", str);
+
+        // lexer
+        t_token *tok = lexer(str);
+        debug_lexer(tok);
+        
         add_history(str);
     }
     write_history(".my_history");

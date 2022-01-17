@@ -18,10 +18,9 @@ struct s_token {
 	size_t			len;
 };
 
-
-// tokenize.c
-t_token *tokenize(char *p);
-void debug_tokenize(t_token *token);
+// lexer.c
+t_token *lexer(char *p);
+void debug_lexer(t_token *token);
 
 // utils.c
 void error(char *str);

@@ -38,7 +38,7 @@ size_t  get_word_len(char *p)
 	return (len);
 }
 
-t_token *tokenize(char *p)
+t_token *lexer(char *p)
 {
 	t_token	*cur;
 	t_token	head;
@@ -69,7 +69,7 @@ t_token *tokenize(char *p)
 	return (head.next);
 }
 
-void debug_tokenize(t_token *token)
+void debug_lexer(t_token *token)
 {
 	const char *kind[] = {"TK_OP", "TK_WORD", "TK_EOF"};
 	while (token)
