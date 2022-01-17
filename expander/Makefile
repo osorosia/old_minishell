@@ -6,7 +6,7 @@
 #    By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 06:15:53 by rnishimo          #+#    #+#              #
-#    Updated: 2022/01/17 06:22:30 by rnishimo         ###   ########.fr        #
+#    Updated: 2022/01/17 06:54:18 by rnishimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS) ../minishell.h
 	make -C ../
-	gcc $^ ../libft/libft.a
+	gcc $(OBJS) ../libft/libft.a
 
 clean:
 	rm -f $(OBJS)
