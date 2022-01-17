@@ -6,7 +6,7 @@
 #    By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 06:15:47 by rnishimo          #+#    #+#              #
-#    Updated: 2022/01/17 06:28:30 by rnishimo         ###   ########.fr        #
+#    Updated: 2022/01/17 06:55:38 by rnishimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,13 +25,16 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	make -C ./libft
 	gcc -fsanitize=address -o $@ $^ ./libft/libft.a -L/usr/include -lreadline
-	./minishell
 
 clean:
 	rm -f $(OBJS)
 
 fclean: clean
 	rm -f $(NAME)
+	cd lexer && make fclean
+	cd parser && make fclean
+	cd expander && make fclean
+	cd exec && make fclean
 
 re: fclean all
 
