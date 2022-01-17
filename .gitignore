@@ -4,6 +4,7 @@
 **/*.o
 **/temp*
 **/tmp*
+**/actual*
 
 **/a.out
 **/minishell
