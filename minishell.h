@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/17 21:38:44 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/17 21:40:24 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+// status
 #define EXIT_CMD_NOT_FOUND 127
 
-typedef enum e_token_kind{
+typedef enum e_token_kind {
 	TK_OP = 0,
 	TK_WORD,
 	TK_EOF,
