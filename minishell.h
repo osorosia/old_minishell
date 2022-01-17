@@ -18,10 +18,20 @@ struct s_token {
 	size_t			len;
 };
 
+//
+// lexer
+//
+
 // lexer.c
 t_token *lexer(char *p);
 void free_lexer(t_token *tok);
+
+// debug_lexer.c
 void debug_lexer(t_token *token);
+
+//
+// minishell
+//
 
 // utils.c
 void error(char *str);
