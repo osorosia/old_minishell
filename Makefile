@@ -1,6 +1,7 @@
 NAME = minishell
 SRC = $(wildcard ./*.c) \
 	$(wildcard ./lexer/*.c) \
+	$(wildcard ./parser/*.c) \
 
 SRCS = $(filter-out %_test.c, $(SRC))
 OBJS = $(SRCS:.c=.o)
@@ -22,6 +23,7 @@ re: fclean all
 test: all
 	@echo ------test------
 	@cd lexer && make test
+	@cd parser && make test
 	@echo -------OK-------
 
 .PHONY: all clean fclean re test
