@@ -1,11 +1,12 @@
 NAME = a.out
 SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
+OBJS += $(filter-out %_test.o, $(wildcard ../lexer/*.o))
 
 all: $(NAME)
 
 $(NAME): $(OBJS) ../minishell.h
-	make -C ../libft
+	make -C ../
 	gcc $^ ../libft/libft.a
 
 clean:

@@ -5,7 +5,7 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS) ../minishell.h
-	make -C ../libft
+	make -C ../
 	gcc $^ ../libft/libft.a
 
 clean:
