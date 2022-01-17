@@ -132,5 +132,5 @@ int main(int argc, char **argv) {
     test_redirect();    // foo0>foo1>>foo2<foo3<<foo4<<<foo5>>>foo6
     test_quote();       // 'foo0' "foo1" ''foo2'' ""foo3""
 
-    printf("OK\n");
+    printf("lexer: OK\n");
 }
