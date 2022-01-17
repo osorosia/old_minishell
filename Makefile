@@ -19,7 +19,9 @@ fclean: clean
 
 re: fclean all
 
-test:
-	cd lexer && make test
+test: all
+	@echo ------test------
+	@cd lexer && make test
+	@echo -------OK-------
 
 .PHONY: all clean fclean re test
