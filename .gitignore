@@ -1,3 +1,5 @@
-**/a.out
+**/*.gch
 **/*.o
+
+**/a.out
 **/minishell
