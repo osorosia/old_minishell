@@ -6,9 +6,12 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/17 07:11:33 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/17 21:38:44 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef MINISHELL_H
+#define MINISHELL_H
 
 #include "./libft/libft.h"
 #include <stdio.h>
@@ -61,3 +64,5 @@ int exec(char *cmds[], char *envp[]);
 // utils.c
 void error(char *str);
 void debug(char *format, ...);
+
+#endif
