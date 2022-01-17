@@ -69,13 +69,29 @@ t_token *lexer(char *p)
 	return (head.next);
 }
 
+void free_lexer(t_token *tok) {
+	t_token	*next;
+
+	while (tok->kind != TK_EOF) {
+		next = tok->next;
+		free(tok);
+		tok = next;
+	}
+	free(tok);
+}
+
 void debug_lexer(t_token *token)
 {
-	const char *kind[] = {"TK_OP", "TK_WORD", "TK_EOF"};
+	const char *kind[] = {
+		"TK_OP",
+		"TK_WORD",
+		"TK_EOF"
+	};
+
 	while (token)
 	{
-		printf("{kind:%s, str:%.*s}\n", 
-			kind[token->kind], 
+		printf("{kind:%-7s, str:%.*s}\n", 
+			kind[token->kind],
 			token->len,
 			token->str);
 		token = token->next;

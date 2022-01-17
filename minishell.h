@@ -20,6 +20,7 @@ struct s_token {
 
 // lexer.c
 t_token *lexer(char *p);
+void free_lexer(t_token *tok);
 void debug_lexer(t_token *token);
 
 // utils.c
