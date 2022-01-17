@@ -16,6 +16,9 @@ echo aaaa > a bbbb > b cccc
 awk '{printf "%sccc\n", $1}' >> aaa
 cat >> a
 
+# TODO
+ls | cat << main.c
+
 ```
 
 cat <a -e >b >c
