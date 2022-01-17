@@ -1,5 +1,6 @@
-SRCS = main.c \
-	tokenize.c
+SRCS = $(wildcard ./*.c) \
+	$(wildcard ./lexer/*.c) \
+
 OBJS = $(SRCS:.c=.o)
 
 all: minishell

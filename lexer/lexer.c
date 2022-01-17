@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../minishell.h"
 
 t_token	*new_token(t_token_kind kind, char *p, size_t len)
 {
@@ -49,12 +49,14 @@ t_token *tokenize(char *p)
 	{
 		while (*p == ' ')
 			p++;
+
 		if (get_operator_len(p))
 		{
 			cur = cur->next = new_token(TK_OP, p, get_operator_len(p));
 			p += cur->len;
 			continue;
 		}
+
 		if (get_word_len(p))
 		{
 			cur = cur->next = new_token(TK_WORD, p, get_word_len(p));
