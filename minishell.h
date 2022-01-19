@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/19 11:56:18 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/19 12:39:37 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_env t_env;
 struct s_env {
 	t_env	*next;	// linked list
 	char	*name;	// e.g. PATH
-	char	*str;	// e.g. /usr/bin:/bin
+	char	*body;	// e.g. /usr/bin:/bin
 };
 
 typedef struct s_minishell t_minishell;
@@ -78,5 +78,11 @@ int exec(char *cmds[], char *envp[]);
 // utils.c
 void error(char *str);
 void debug(char *format, ...);
+
+// ms.c
+t_minishell *init_minishell(char *envp[]);
+void 		free_minishell(t_minishell *ms);
+void 		add_env(t_minishell *ms, char *str);
+t_env   	*find_env(t_minishell *ms, char *name);
 
 #endif
