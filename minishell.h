@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/19 12:39:37 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/19 14:02:13 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ struct s_env {
 typedef struct s_minishell t_minishell;
 struct s_minishell {
 	t_env	*envs;	// environment variables
+	long	env_size;
+
 	long	status; // exit status
 };
 
