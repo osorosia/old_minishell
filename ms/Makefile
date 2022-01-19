@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/17 06:22:16 by rnishimo          #+#    #+#              #
-#    Updated: 2022/01/19 14:15:36 by rnishimo         ###   ########.fr        #
+#    Created: 2022/01/19 14:14:41 by rnishimo          #+#    #+#              #
+#    Updated: 2022/01/19 14:16:38 by rnishimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,11 @@ NAME = a.out
 SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
 OBJS += $(filter-out %main.o, $(wildcard ../*.o))
-# OBJS += $(filter-out %_test.o, $(wildcard ../lexer/*.o))
+OBJS += $(filter-out %_test.o, $(wildcard ../lexer/*.o))
 OBJS += $(filter-out %_test.o, $(wildcard ../parser/*.o))
 OBJS += $(filter-out %_test.o, $(wildcard ../expander/*.o))
 OBJS += $(filter-out %_test.o, $(wildcard ../exec/*.o))
-OBJS += $(filter-out %_test.o, $(wildcard ../ms/*.o))
+# OBJS += $(filter-out %_test.o, $(wildcard ../ms/*.o))
 
 all: $(NAME)
 
