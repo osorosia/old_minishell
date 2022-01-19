@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:16:07 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/17 06:16:07 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/19 13:48:01 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void assert_token(t_token **tok, t_token_kind kind, char *str) {
 }
 
 void test1() {
-    const char *p = "foo";
+    char *p = "foo";
     print_start(p);
 
     t_token *tok = lexer(p);
@@ -45,7 +45,7 @@ void test1() {
 }
 
 void test_pipe() {
-    const char *p = "foo0|foo1 | foo2 || foo3";
+    char *p = "foo0|foo1 | foo2 || foo3";
     print_start(p);
 
     t_token *tok = lexer(p);
@@ -63,11 +63,10 @@ void test_pipe() {
 
     free_lexer(head);
     print_end();
-    return true;
 }
 
 void test_redirect() {
-    const char *p = "foo0>foo1>>foo2<foo3<<foo4<<<foo5>>>foo6";
+    char *p = "foo0>foo1>>foo2<foo3<<foo4<<<foo5>>>foo6";
     print_start(p);
 
     t_token *tok = lexer(p);
@@ -92,11 +91,10 @@ void test_redirect() {
 
     free_lexer(head);
     print_end();
-    return true;
 }
 
 void test_quote() {
-    const char *p = "'foo0' \"foo1\" ''foo2'' \"\"foo3\"\"";
+    char *p = "'foo0' \"foo1\" ''foo2'' \"\"foo3\"\"";
     print_start(p);
 
     t_token *tok = lexer(p);
@@ -126,8 +124,8 @@ void test_quote() {
 
     free_lexer(head);
     print_end();
-    return true;
 }
+
 int main(int argc, char **argv) {
     // manual test
     if (argc == 2) {
