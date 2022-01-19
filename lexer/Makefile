@@ -6,13 +6,14 @@
 #    By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 06:22:16 by rnishimo          #+#    #+#              #
-#    Updated: 2022/01/17 06:54:22 by rnishimo         ###   ########.fr        #
+#    Updated: 2022/01/19 13:45:41 by rnishimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = a.out
 SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
+OBJS += $(filter-out %main.o, $(wildcard ../*.o))
 # OBJS += $(filter-out %_test.o, $(wildcard ../lexer/*.o))
 OBJS += $(filter-out %_test.o, $(wildcard ../parser/*.o))
 OBJS += $(filter-out %_test.o, $(wildcard ../expander/*.o))
