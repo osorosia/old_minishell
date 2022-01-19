@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:03:29 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/19 14:03:00 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/19 14:22:23 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_minishell *init_minishell(char *envp[]) {
     t_minishell *ms = ft_calloc(1, sizeof(t_minishell));
     
     int i = 0;
-    while (envp[i])
+    while (envp && envp[i])
         add_env(ms, envp[i++]);
     return (ms);
 }
