@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:24 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/17 07:23:54 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/19 20:36:20 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ void test_exec_ls(const int expected) {
 int main(int argc, char **argv) {
     // automatic test
     setvbuf(stdout, NULL, _IONBF, 0);
+    printf("exec =================================\n");
     // exec()
     test_exec_no_cmds(EXIT_CMD_NOT_FOUND); // no_commands
     test_exec_ls(EXIT_SUCCESS); // /bin/ls
 
-    printf("exec: OK\n");
+    printf("exec OK ==============================\n");
 }
