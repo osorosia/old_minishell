@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 13:03:34 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 13:44:58 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 
 #include <readline/readline.h>
 #include <readline/history.h>
+
+#ifndef DEBUG
+#define DEBUG 1
+#endif
 
 // status
 #define EXIT_CMD_NOT_FOUND 127
@@ -125,7 +129,7 @@ void debug_expander(t_node *node);
 //
 
 // exec.c
-int exec(char *cmds[], char *envp[]);
+int exec_file(char *pathname, char *cmds[], char *envp[]);
 
 //
 // builtin

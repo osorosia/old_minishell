@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:24 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 12:17:15 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 13:44:57 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void test_exec_no_cmds(const int expected) {
     char *cmds[] = {"no_commands", NULL};
     
     printf("stdout >>>>>>>>>\n");
-    assert(exec(cmds, NULL) == expected);
+    assert(exec_file(cmds[0], cmds, NULL) == expected);
     printf("<<<<<<<<<<<<<<<<\n");
 
     for (int i = 0; cmds[i]; i++)
@@ -31,7 +31,7 @@ void test_exec_ls(const int expected) {
     char *cmds[] = {"/bin/ls", NULL};
     
     printf("stdout >>>>>>>>>\n");
-    assert(exec(cmds, NULL) == expected);
+    assert(exec_file(cmds[0], cmds, NULL) == expected);
     printf("<<<<<<<<<<<<<<<<\n");
 
     for (int i = 0; cmds[i]; i++)
