@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   me_test.c                                          :+:      :+:    :+:   */
+/*   ms_test.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:19:31 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 12:10:11 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 12:15:59 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@ void test() {
     printf("%s\n", expected);
 }
 
+void test_get_paths(char **envp) {
+    printf("PATH => ");
+
+    t_minishell *ms = init_minishell(envp);
+
+    char **paths = get_paths(ms);
+    assert(paths != NULL);
+
+    for (int i = 0; paths[i]; i++)
+        printf("'%s' ", paths[i]);
+    printf("\n");
+
+    free_minishell(ms);
+}
 
 int main(int argc, char **argv, char **envp) {
     // automatic test
@@ -36,6 +50,6 @@ int main(int argc, char **argv, char **envp) {
     // add_env(), find_env()
     test();
     // get_paths()
-    // test_get_paths(envp);
+    test_get_paths(envp);
     printf("ms OK ==============================\n");
 }

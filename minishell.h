@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 11:17:40 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 12:13:18 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,5 +147,6 @@ t_minishell *init_minishell(char *envp[]);
 void 		free_minishell(t_minishell *ms);
 void 		add_env(t_minishell *ms, char *str);
 t_env   	*find_env(t_minishell *ms, char *name);
+char        **get_paths(t_minishell *ms);
 
 #endif
