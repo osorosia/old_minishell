@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:38 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 08:41:45 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 09:14:56 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ t_node *word(t_token **tok);
 // parser = pipe_cmd EOF
 t_node *parser(t_token *tok) {
     t_node *node = pipe_cmd(&tok);
-    if (!equal(tok, TK_EOF, ""))
+    if (!equal(tok, TK_EOF, NULL))
         error("parser error: expected EOF\n");
     return (node);
 }
