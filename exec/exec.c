@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:23:38 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 23:14:05 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 23:18:49 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,7 @@ void exec_recursive(t_minishell *ms, t_node *node) {
             // TODO
         }
         else if (node->is_exist) {
-            pid = fork;
-            if (pid == 0) {
-                exec_file(node->pathname, create_cmds(node->cmds), create_envp(ms->envs));
-                return 127;
-            }
-            wait(&sts);
+            exec_file(node->pathname, create_cmds(node->cmds), create_envp(ms->envs));
         }
         else
             fprintf(stderr, "minishell: %s: command not found\n", node->cmds->str);
