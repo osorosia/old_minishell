@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:16:30 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/17 07:14:55 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 12:32:46 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,13 @@ void debug(char *format, ...)
     va_start(ap, format);
     vfprintf(stderr, format, ap);
     va_end(ap);
+}
+
+char	*ft_strjoin_with_free(char *s1, bool f1, char *s2, bool f2) {
+    char *str = ft_strjoin(s1, s2);
+    if (f1)
+        free(s1);
+    if (f2)
+        free(s2);
+    return str;
 }

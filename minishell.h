@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 12:13:18 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 12:32:59 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ bool check_builtin(char *str);
 // utils.c
 void error(char *str);
 void debug(char *format, ...);
+char *ft_strjoin_with_free(char *s1, bool f1, char *s2, bool f2);
 
 // ms.c
 t_minishell *init_minishell(char *envp[]);
