@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 13:44:58 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 13:49:38 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,8 @@ void debug_expander(t_node *node);
 //
 
 // exec.c
-int exec_file(char *pathname, char *cmds[], char *envp[]);
+int  exec_file(char *pathname, char *cmds[], char *envp[]);
+void exec(t_minishell *ms, t_node *node);
 
 //
 // builtin

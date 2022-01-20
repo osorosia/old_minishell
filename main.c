@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:41 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 13:45:08 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 13:49:45 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int main(int argc, char **argv, char **envp) {
         // exec
         if (DEBUG)
 	        printf("exec::::::::::::::\n");
-        // exec(ms, node);
+        exec(ms, node);
 
         free_parser(node);
         add_history(str);
