@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 12:32:59 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 13:03:34 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ struct s_node {
 	t_node *redir_in;  // linked-list
 	t_node *redir_out; // linked-list
 	bool   is_builtin;
-	char   *filename;
+	char   *pathname;
 	bool   is_exist;
 
 	// word
