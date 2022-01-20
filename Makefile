@@ -6,7 +6,7 @@
 #    By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 06:15:47 by rnishimo          #+#    #+#              #
-#    Updated: 2022/01/20 09:20:51 by rnishimo         ###   ########.fr        #
+#    Updated: 2022/01/20 10:58:35 by rnishimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ SRC = $(wildcard ./*.c) \
 	$(wildcard ./parser/*.c) \
 	$(wildcard ./expander/*.c) \
 	$(wildcard ./exec/*.c) \
+	$(wildcard ./ms/*.c) \
+	$(wildcard ./builtin/*.c) \
 
 SRCS = $(filter-out %_test.c, $(SRC))
 OBJS = $(SRCS:.c=.o)

@@ -6,7 +6,7 @@
 #    By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 06:22:16 by rnishimo          #+#    #+#              #
-#    Updated: 2022/01/19 14:15:36 by rnishimo         ###   ########.fr        #
+#    Updated: 2022/01/20 10:58:10 by rnishimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ OBJS += $(filter-out %_test.o, $(wildcard ../parser/*.o))
 OBJS += $(filter-out %_test.o, $(wildcard ../expander/*.o))
 OBJS += $(filter-out %_test.o, $(wildcard ../exec/*.o))
 OBJS += $(filter-out %_test.o, $(wildcard ../ms/*.o))
+OBJS += $(filter-out %_test.o, $(wildcard ../builtin/*.o))
 
 all: $(NAME)
 
