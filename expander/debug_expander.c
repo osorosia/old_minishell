@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_parser.c                                     :+:      :+:    :+:   */
+/*   debug_expander.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 08:31:58 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 10:28:30 by rnishimo         ###   ########.fr       */
+/*   Created: 2022/01/20 10:27:22 by rnishimo          #+#    #+#             */
+/*   Updated: 2022/01/20 10:28:49 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void debug_parser_recursive(t_node *node, long indent) {
+void debug_expander_recursive(t_node *node, long indent) {
     if (node == NULL)
         return;
     
     if (node->kind == ND_PIPE) {
         if (node->lhs != NULL) {
-            debug_parser_recursive(node->lhs, indent);
+            debug_expander_recursive(node->lhs, indent);
             printf("%*s----PIPE----\n", indent * INDENT_WIDTH, "");
         }
-        debug_parser_recursive(node->rhs, indent);
+        debug_expander_recursive(node->rhs, indent);
     }
 
     if (node->kind == ND_CMD) {
@@ -55,8 +55,8 @@ void debug_parser_recursive(t_node *node, long indent) {
     }
 }
 
-void debug_parser(t_node *node) {
+void debug_expander(t_node *node) {
     setvbuf(stdout, NULL, _IONBF, 0);
-    printf("parser::::::::::::::\n");
-    debug_parser_recursive(node, 1);
+    printf("expander::::::::::::::\n");
+    debug_expander_recursive(node, 1);
 }

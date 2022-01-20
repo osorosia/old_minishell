@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 09:23:40 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 11:01:02 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 
 // status
 #define EXIT_CMD_NOT_FOUND 127
+
+// debug
+#define INDENT_WIDTH 4
 
 typedef enum e_token_kind {
 	TK_OP = 0,
@@ -60,6 +63,8 @@ struct s_node {
 	t_node *cmds;      // linked-list
 	t_node *redir_in;  // linked-list
 	t_node *redir_out; // linked-list
+	bool   is_builtin;
+	bool   is_exist;
 
 	// word
 	char *str;
@@ -103,6 +108,16 @@ void free_parser(t_node *node);
 
 // debug_parser.c
 void debug_parser(t_node *node);
+
+//
+// expander
+//
+
+// expander.c
+void expander(t_minishell *ms, t_node *node);
+
+// debug_expander.c
+void debug_expander(t_node *node) {
 
 //
 // exec
