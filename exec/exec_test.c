@@ -6,13 +6,12 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:24 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/19 20:36:20 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 11:31:29 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include <assert.h>
-
 
 void test_exec_no_cmds(const int expected) {
     char *cmds[] = {"no_commands", NULL};
