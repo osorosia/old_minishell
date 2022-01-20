@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:30 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/19 20:38:49 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 12:17:15 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void test() {
 int main(int argc, char **argv) {
     // automatic test
     setvbuf(stdout, NULL, _IONBF, 0);
-    printf("parser =================================\n");
+    printf("parser=================================\n");
     test();
-    printf("parser OK ==============================\n");
+    printf("parser OK==============================\n");
 }

@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 14:19:31 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 12:15:59 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 12:17:15 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,10 @@ void test_get_paths(char **envp) {
 int main(int argc, char **argv, char **envp) {
     // automatic test
     setvbuf(stdout, NULL, _IONBF, 0);
-    printf("ms =================================\n");
+    printf("ms=================================\n");
     // add_env(), find_env()
     test();
     // get_paths()
     test_get_paths(envp);
-    printf("ms OK ==============================\n");
+    printf("ms OK==============================\n");
 }
