@@ -95,7 +95,7 @@ void free_lexer(t_token *tok) {
 t_token *skip(t_token *tok, t_token_kind kind, char *str) {
 	if (tok->kind != kind)
 		error("skip error : unexpected kind\n");
-	if (str != NULL && !ft_strncmp(tok->str, str, tok->len))
+	if (str != NULL && ft_strncmp(tok->str, str, tok->len))
 		error("skip error : unexpectrd str\n");
 	return tok->next;
 }
@@ -103,7 +103,7 @@ t_token *skip(t_token *tok, t_token_kind kind, char *str) {
 bool equal(t_token *tok, t_token_kind kind, char *str) {
 	if (tok->kind != kind)
 		return false;
-	if (str != NULL && !ft_strncmp(tok->str, str, tok->len))
+	if (str != NULL && ft_strncmp(tok->str, str, tok->len))
 		return false;
 	return true;
 }
