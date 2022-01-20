@@ -6,21 +6,30 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:41 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 13:49:45 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 23:28:24 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main(int argc, char **argv, char **envp) {
-    char *prompt = "minishell>";
+char *get_prompt() {
+    char buf[512];
+    const int size = 512;
+    char *prompt = "(minishell)";
+    prompt = ft_strjoin(prompt, getcwd(buf, size));
+    prompt = ft_strjoin_with_free(prompt, true, "> ", false);
+    return prompt;
+}
 
+int main(int argc, char **argv, char **envp) {
     t_minishell *ms = init_minishell(envp);
     
     using_history();
     read_history(".my_history"); // [ToDo]historyファイルが無いときの動作の検証
     while (1) {
+        char *prompt = get_prompt();
         char *str = readline(prompt);
+        free(prompt);
 
         // lexer
         t_token *tok = lexer(str);
