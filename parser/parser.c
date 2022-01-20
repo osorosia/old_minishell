@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:38 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 09:14:56 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 09:35:12 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ t_node *redir_in(t_token **tok) {
         skip(*tok, TK_OP, "<");
     else if (equal(*tok, TK_OP, "<<"))
         skip(*tok, TK_OP, "<<");
+    else
+        error("parser error: expected '<' or '<<'");
     t_node *node = word(tok);
     return node;
 }
@@ -126,6 +128,8 @@ t_node *redir_out(t_token **tok) {
         *tok = skip(*tok, TK_OP, ">");
     else if (equal(*tok, TK_OP, ">>"))
         *tok = skip(*tok, TK_OP, ">>");
+    else
+        error("parser error: expected '>' or '>>'");
     t_node *node = word(tok);
     return node;
 }
