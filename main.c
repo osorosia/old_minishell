@@ -23,7 +23,7 @@ int main() {
         // lexer
         t_token *tok = lexer(str);
         debug_lexer(tok);
-        
+        free_lexer(tok);
         add_history(str);
     }
     write_history(".my_history");
