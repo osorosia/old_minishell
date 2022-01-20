@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:16:09 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/17 06:16:10 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 07:38:32 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,20 @@ void free_lexer(t_token *tok) {
 		tok = next;
 	}
 	free(tok);
+}
+
+t_token *skip(t_token *tok, t_token_kind kind, char *str) {
+	if (tok->kind != kind)
+		error("skip error : unexpected kind\n");
+	if (str != NULL && !ft_strncmp(tok->str, str, tok->len))
+		error("skip error : unexpectrd str\n");
+	return tok->next;
+}
+
+bool equal(t_token *tok, t_token_kind kind, char *str) {
+	if (tok->kind != kind)
+		return false;
+	if (str != NULL && !ft_strncmp(tok->str, str, tok->len))
+		return false;
+	return true;
 }

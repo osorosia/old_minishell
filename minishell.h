@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/19 14:02:13 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 08:08:39 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,33 @@ struct s_token {
 	size_t			len;
 };
 
+typedef enum e_node_kind t_node_kind;
+enum e_node_kind {
+	ND_CMD,
+	ND_PIPE,
+	ND_WORD,
+	ND_REDIR_IN,
+	ND_REDIR_OUT,
+};
+
+typedef struct s_node t_node;
+struct s_node {
+	t_node_kind kind;
+	t_node *next;
+
+	// pipe
+	t_node *lhs;
+	t_node *rhs;
+
+	// cmd
+	t_node *cmds;      // linked-list
+	t_node *redir_in;  // linked-list
+	t_node *redir_out; // linked-list
+
+	// word
+	char *str;
+};
+
 typedef struct s_env t_env;
 struct s_env {
 	t_env	*next;	// linked list
@@ -61,7 +88,9 @@ struct s_minishell {
 
 // lexer.c
 t_token *lexer(char *p);
-void free_lexer(t_token *tok);
+void	free_lexer(t_token *tok);
+t_token *skip(t_token *tok, t_token_kind kind, char *str);
+bool	equal(t_token *tok, t_token_kind kind, char *str);
 
 // debug_lexer.c
 void debug_lexer(t_token *token);
