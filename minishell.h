@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 11:01:02 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 11:11:48 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void debug_parser(t_node *node);
 void expander(t_minishell *ms, t_node *node);
 
 // debug_expander.c
-void debug_expander(t_node *node) {
+void debug_expander(t_node *node);
 
 //
 // exec
