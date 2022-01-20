@@ -113,9 +113,9 @@ t_node *command(t_token **tok) {
 // redir_in = ("<" | "<<") word
 t_node *redir_in(t_token **tok) {
     if (equal(*tok, TK_OP, "<"))
-        skip(*tok, TK_OP, "<");
+        *tok = skip(*tok, TK_OP, "<");
     else if (equal(*tok, TK_OP, "<<"))
-        skip(*tok, TK_OP, "<<");
+        *tok = skip(*tok, TK_OP, "<<");
     else
         error("parser error: expected '<' or '<<'");
     t_node *node = word(tok);
