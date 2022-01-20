@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:07:20 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 09:09:03 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 10:09:28 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void debug_lexer(t_token *token)
 		"TK_EOF"
 	};
 
+    setvbuf(stdout, NULL, _IONBF, 0);
 	printf("lexer::::::::::::::\n");
 	while (token)
 	{
