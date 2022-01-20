@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:03:29 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/19 14:22:23 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 12:07:02 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,11 @@ t_env   *find_env(t_minishell *ms, char *name) {
         env = env->next;
     }
     return (NULL);
+}
+
+char **get_paths(t_minishell *ms) {
+    t_env *env = find_env(ms, "PATH");
+    if (env == NULL)
+        return NULL;
+    return (ft_split(env->body, ':'));
 }
