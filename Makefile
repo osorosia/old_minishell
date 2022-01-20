@@ -6,7 +6,7 @@
 #    By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 06:15:47 by rnishimo          #+#    #+#              #
-#    Updated: 2022/01/17 07:29:05 by rnishimo         ###   ########.fr        #
+#    Updated: 2022/01/20 06:42:01 by rnishimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ test: all
 	@cd parser && make test
 	@cd expander && make test
 	@cd exec && make test
+	@cd ms && make test
 	@echo -------OK-------
 
 t:

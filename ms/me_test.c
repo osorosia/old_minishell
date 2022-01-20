@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expander_test.c                                    :+:      :+:    :+:   */
+/*   me_test.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/17 06:15:24 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 06:45:16 by rnishimo         ###   ########.fr       */
+/*   Created: 2022/01/19 14:19:31 by rnishimo          #+#    #+#             */
+/*   Updated: 2022/01/20 06:46:35 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,26 @@
 #include <assert.h>
 #include <string.h>
 
-int main(int argc, char **argv, char **envp) {
+void test() {
+    char *input = "TEST=aaaaa";
+    char *expected = "aaaaa";
+    printf("%s => ", input);
 
+    t_minishell *ms = init_minishell(NULL);
+    add_env(ms, input);    
+    assert(strcmp(find_env(ms, "TEST")->body, "aaaaa") == 0);
+    free_minishell(ms);
+
+    // result
+    printf("%s\n", expected);
+}
+
+int main(int argc, char **argv, char **envp) {
     // automatic test
     setvbuf(stdout, NULL, _IONBF, 0);
-    printf("expander =================================\n");
-    printf("expander OK ==============================\n");
+    printf("ms =================================\n");
+    // add_env(), find_env()
+    test(envp);
+
+    printf("ms OK ==============================\n");
 }
