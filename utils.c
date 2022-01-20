@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:16:30 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 12:32:46 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 13:00:15 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,8 @@ char	*ft_strjoin_with_free(char *s1, bool f1, char *s2, bool f2) {
     if (f2)
         free(s2);
     return str;
+}
+
+bool check_x(char *path) {
+    return (access(path, X_OK) == 0);
 }

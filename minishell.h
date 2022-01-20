@@ -142,6 +142,7 @@ bool check_builtin(char *str);
 void error(char *str);
 void debug(char *format, ...);
 char *ft_strjoin_with_free(char *s1, bool f1, char *s2, bool f2);
+bool check_x(char *path);
 
 // ms.c
 t_minishell *init_minishell(char *envp[]);
