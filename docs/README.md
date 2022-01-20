@@ -1,3 +1,12 @@
+## EBNF
+```ebnf
+parser    = pipe
+pipe      = command ("|" command)*
+command   = word (word | redir_in | redir_out)*
+redir_in  = ("<" | "<<") word 
+redir_out = (">" | ">>") word
+word      = (e.g.) "ls", "-l", "file", ...
+```
 
 ## memo
 
