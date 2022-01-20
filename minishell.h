@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 08:08:39 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 08:37:42 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ enum e_node_kind {
 	ND_CMD,
 	ND_PIPE,
 	ND_WORD,
-	ND_REDIR_IN,
-	ND_REDIR_OUT,
 };
 
 typedef struct s_node t_node;
