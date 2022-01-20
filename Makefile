@@ -6,7 +6,7 @@
 #    By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 06:15:47 by rnishimo          #+#    #+#              #
-#    Updated: 2022/01/20 06:42:01 by rnishimo         ###   ########.fr        #
+#    Updated: 2022/01/20 09:20:51 by rnishimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRC = $(wildcard ./*.c) \
 
 SRCS = $(filter-out %_test.c, $(SRC))
 OBJS = $(SRCS:.c=.o)
+CFLAGS = 
+# CFLAGS = -fsanitize=address
 
 all: $(NAME)
 
@@ -27,7 +29,7 @@ run: all
 
 $(NAME): $(OBJS)
 	make -C ./libft
-	gcc -fsanitize=address -o $@ $^ ./libft/libft.a -L/usr/include -lreadline
+	gcc $(CFLAGS) -o $@ $^ ./libft/libft.a -L/usr/include -lreadline
 
 clean:
 	rm -f $(OBJS)
@@ -38,6 +40,7 @@ fclean: clean
 	cd parser && make fclean
 	cd expander && make fclean
 	cd exec && make fclean
+	cd ms && make fclean
 
 re: fclean all
 
