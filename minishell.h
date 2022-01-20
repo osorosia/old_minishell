@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 11:11:48 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 11:17:40 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ struct s_node {
 	t_node *redir_in;  // linked-list
 	t_node *redir_out; // linked-list
 	bool   is_builtin;
+	char   *filename;
 	bool   is_exist;
 
 	// word
@@ -125,6 +126,13 @@ void debug_expander(t_node *node);
 
 // exec.c
 int exec(char *cmds[], char *envp[]);
+
+//
+// builtin
+//
+
+// builtin.c
+bool check_builtin(char *str);
 
 //
 // minishell

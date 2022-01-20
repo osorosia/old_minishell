@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:27:22 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 10:28:49 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 11:51:56 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ void debug_expander_recursive(t_node *node, long indent) {
             cmd = cmd->next;
         }
         printf("\n");
-
+        indent++;
+        if (node->is_builtin)
+            printf("%*s- builtin\n", indent * INDENT_WIDTH, "");
+        indent--;
         if (node->redir_in) {
             printf("%*sred_in : ", indent * INDENT_WIDTH, "");
             t_node *redir_in = node->redir_in;
