@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 08:31:58 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 10:09:14 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 10:13:43 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void debug_parser_recursive(t_node *node, long indent) {
             printf("%*sred_in : ", indent * INDENT_WIDTH, "");
             t_node *redir_in = node->redir_in;
             while (redir_in) {
-                printf("'%s' ", cmd->str);
+                printf("'%s' ", redir_in->str);
                 redir_in = redir_in->next;
             }
             printf("\n");
@@ -49,7 +49,7 @@ void debug_parser_recursive(t_node *node, long indent) {
             printf("%*sred_out: ", indent * INDENT_WIDTH, "");
             t_node *redir_out = node->redir_out;
             while (redir_out) {
-                printf("'%s' ", cmd->str);
+                printf("'%s' ", redir_out->str);
                 redir_out = redir_out->next;
             }
             printf("\n");
