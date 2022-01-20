@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 08:37:42 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 09:23:40 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,17 @@ bool	equal(t_token *tok, t_token_kind kind, char *str);
 
 // debug_lexer.c
 void debug_lexer(t_token *token);
+
+//
+// parser
+//
+
+// parser.c
+t_node *parser(t_token *tok);
+void free_parser(t_node *node);
+
+// debug_parser.c
+void debug_parser(t_node *node);
 
 //
 // exec
