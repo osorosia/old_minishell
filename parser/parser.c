@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:38 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 08:25:42 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/20 08:39:12 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,4 +137,16 @@ t_node *word(t_token **tok) {
         node = new_node_word(*tok);
     *tok = skip(*tok, TK_WORD, NULL);
     return node;
+}
+
+void free_parser(t_node *node) {
+    if (node == NULL)
+        return;
+    free_node(node->lhs);
+    free_node(node->rhs);
+    free_node(node->next);
+    free_node(node->cmds);
+    free_node(node->redir_in);
+    free_node(node->redir_out);
+    free(node);
 }
