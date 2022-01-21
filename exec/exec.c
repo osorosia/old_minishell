@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:23:38 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/21 15:10:19 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:34:32 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void exec_recursive(t_minishell *ms, t_node *node) {
 }
 
 void exec_simple(t_minishell *ms, t_node *node) {
+    node = node->rhs;
     if (node->is_builtin) {
         builtin(ms, node);
     }
@@ -81,16 +82,14 @@ void exec_simple(t_minishell *ms, t_node *node) {
 
 void exec(t_minishell *ms, t_node *node) {
     int sts;
-    if (node->kind == ND_PIPE) {
-        pid_t pid = fork();
-        if (pid == 0)
-            exec_recursive(ms, node);
-        wait(&sts);
-    }
-    else if (node->kind == ND_CMD) {
+    
+    if (node->kind == ND_PIPE && node->lhs == NULL) {
         exec_simple(ms, node);
+        return;
     }
-    else {
-        error("exec error\n");
-    }
+
+    pid_t pid = fork();
+    if (pid == 0)
+        exec_recursive(ms, node);
+    wait(&sts);
 }

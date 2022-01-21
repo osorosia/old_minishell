@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:55:43 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/21 01:23:03 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:18:23 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void builtin(t_minishell *ms, t_node *node) {
     if (!strncmp(node->cmds->str, "echo", ft_strlen("echo") + 1))
         printf("echo\n");
     else if (!strncmp(node->cmds->str, "cd", ft_strlen("cd") + 1))
-        printf("cd\n");
+        cd(ms, node);
     else if (!strncmp(node->cmds->str, "pwd", ft_strlen("pwd") + 1))
         pwd();
     else if (!strncmp(node->cmds->str, "export", ft_strlen("export") + 1))
