@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:23:38 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/21 15:34:32 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/21 15:55:26 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,20 @@ void exec_simple(t_minishell *ms, t_node *node) {
     }
 }
 
+bool is_simple_command(t_node *node) {
+    return node->kind == ND_PIPE && node->lhs == NULL;
+}
+
 void exec(t_minishell *ms, t_node *node) {
     int sts;
     
-    if (node->kind == ND_PIPE && node->lhs == NULL) {
+    // simple command
+    if (is_simple_command(node)) {
         exec_simple(ms, node);
         return;
     }
 
+    // pipe command
     pid_t pid = fork();
     if (pid == 0)
         exec_recursive(ms, node);
