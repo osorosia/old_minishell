@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:23:38 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 23:18:49 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/21 00:58:52 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,42 +23,6 @@ int exec_file(char *pathname, char *cmds[], char *envp[]) {
     return WEXITSTATUS(sts);
 }
 
-char **create_cmds(t_node *cmds) {
-    long size = 0;
-    t_node *tmp = cmds;
-    while (tmp) {
-        size++;
-        tmp = tmp->next;
-    }
-
-    char **strs = (char **)ft_calloc(size + 1, sizeof(char *));
-    int i = 0;
-    while (cmds) {
-        strs[i++] = cmds->str;
-        cmds = cmds->next;
-    }
-    return strs;
-}
-
-char **create_envp(t_env *env) {
-    long size = 0;
-    t_env *tmp = env;
-    while (tmp) {
-        size++;
-        tmp = tmp->next;
-    }
-
-    char **strs = (char **)ft_calloc(size + 1, sizeof(char *));
-    int i = 0;
-    while (env) {
-        strs[i] = ft_strjoin(env->name, "=");
-        strs[i] = ft_strjoin_with_free(strs[i], true, env->body, false);
-        i++;
-        env = env->next;
-    }
-    return strs;
-}
-
 void exec_recursive(t_minishell *ms, t_node *node) {
     int fd[2];
     pid_t pid;
@@ -72,7 +36,7 @@ void exec_recursive(t_minishell *ms, t_node *node) {
     }
     if (node->kind == ND_CMD) {
         if (node->is_builtin) {
-            // TODO
+            builtin(ms, node);
         }
         else if (node->is_exist) {
             exec_file(node->pathname, create_cmds(node->cmds), create_envp(ms->envs));
