@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:41 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/21 00:34:34 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/21 00:48:08 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int main(int argc, char **argv, char **envp) {
         if (DEBUG)
             debug_parser(node);
         free_token(tok);
+        free(str);
 
         // expander
         expander(ms, node);
