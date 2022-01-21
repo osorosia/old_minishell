@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:41 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 23:28:24 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/21 00:19:16 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,3 @@ int main(int argc, char **argv, char **envp) {
     }
     write_history(".my_history");
 }
-
-// build:
-//   gcc read.c -L/usr/include -lreadline
