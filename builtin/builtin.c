@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:55:43 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/21 01:00:31 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/21 01:23:03 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,17 @@ void builtin(t_minishell *ms, t_node *node) {
     else if (!strncmp(node->cmds->str, "cd", ft_strlen("cd") + 1))
         printf("cd\n");
     else if (!strncmp(node->cmds->str, "pwd", ft_strlen("pwd") + 1))
-        printf("pwd\n");
+        pwd();
     else if (!strncmp(node->cmds->str, "export", ft_strlen("export") + 1))
         printf("export\n");
     else if (!strncmp(node->cmds->str, "unset", ft_strlen("unset") + 1))
         printf("unset\n");
     else if (!strncmp(node->cmds->str, "env", ft_strlen("env") + 1))
         printf("env\n");
-    else if (!strncmp(node->cmds->str, "exit", ft_strlen("exit") + 1))
-        printf("exit\n");
+    else if (!strncmp(node->cmds->str, "exit", ft_strlen("exit") + 1)) {
+        printf("bye\n");
+        exit(0);
+    }
     else
         error("unexpected builtin\n");
 }
