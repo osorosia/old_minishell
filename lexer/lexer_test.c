@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:16:07 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 12:17:15 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/21 00:34:34 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void test1() {
     assert_token(&tok, TK_WORD, "foo");
     assert_token(&tok, TK_EOF,  "");
 
-    free_lexer(head);
+    free_token(head);
     print_end();
 }
 
@@ -61,7 +61,7 @@ void test_pipe() {
     assert_token(&tok, TK_WORD, "foo3");
     assert_token(&tok, TK_EOF,  "");
 
-    free_lexer(head);
+    free_token(head);
     print_end();
 }
 
@@ -89,7 +89,7 @@ void test_redirect() {
     assert_token(&tok, TK_WORD, "foo6");
     assert_token(&tok, TK_EOF,  "");
 
-    free_lexer(head);
+    free_token(head);
     print_end();
 }
 
@@ -122,7 +122,7 @@ void test_quote() {
 
     assert_token(&tok, TK_EOF,  "");
 
-    free_lexer(head);
+    free_token(head);
     print_end();
 }
 
@@ -131,7 +131,7 @@ int main(int argc, char **argv) {
     if (argc == 2) {
         t_token *tok = lexer(argv[1]);
         debug_lexer(tok);
-        free_lexer(tok);
+        free_token(tok);
         return (0);
     }
 

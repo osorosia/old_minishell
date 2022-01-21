@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:41 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/21 00:19:16 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/21 00:34:34 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int main(int argc, char **argv, char **envp) {
         t_node *node = parser(tok);
         if (DEBUG)
             debug_parser(node);
-        free_lexer(tok);
+        free_token(tok);
 
         // expander
         expander(ms, node);
@@ -52,7 +52,7 @@ int main(int argc, char **argv, char **envp) {
 	        printf("exec::::::::::::::\n");
         exec(ms, node);
 
-        free_parser(node);
+        free_node(node);
         add_history(str);
     }
     write_history(".my_history");

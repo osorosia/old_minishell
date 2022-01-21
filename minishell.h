@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 13:49:38 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/21 00:34:34 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ struct s_minishell {
 
 // lexer.c
 t_token *lexer(char *p);
-void	free_lexer(t_token *tok);
+void	free_token(t_token *tok);
 t_token *skip(t_token *tok, t_token_kind kind, char *str);
 bool	equal(t_token *tok, t_token_kind kind, char *str);
 
@@ -109,7 +109,7 @@ void debug_lexer(t_token *token);
 
 // parser.c
 t_node *parser(t_token *tok);
-void free_parser(t_node *node);
+void free_node(t_node *node);
 
 // debug_parser.c
 void debug_parser(t_node *node);

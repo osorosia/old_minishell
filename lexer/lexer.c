@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:16:09 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 10:05:04 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/21 00:34:34 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_token *lexer(char *p)
 	return (head.next);
 }
 
-void free_lexer(t_token *tok) {
+void free_token(t_token *tok) {
 	t_token	*next;
 
 	while (tok->kind != TK_EOF) {

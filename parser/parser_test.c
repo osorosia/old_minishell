@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:30 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/20 12:17:15 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/21 00:34:34 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void test() {
     t_token *tok = lexer("aaa");
-    free_lexer(tok);
+    free_token(tok);
 }
 
 int main(int argc, char **argv) {
