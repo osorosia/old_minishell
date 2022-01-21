@@ -6,7 +6,7 @@
 #    By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/17 06:15:47 by rnishimo          #+#    #+#              #
-#    Updated: 2022/01/20 10:58:35 by rnishimo         ###   ########.fr        #
+#    Updated: 2022/01/21 00:37:59 by rnishimo         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ CFLAGS =
 
 all: $(NAME)
 
-run: all
+run: re
 	./$(NAME)
 
 $(NAME): $(OBJS)
