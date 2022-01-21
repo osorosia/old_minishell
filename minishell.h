@@ -138,6 +138,7 @@ void exec(t_minishell *ms, t_node *node);
 
 // builtin.c
 bool check_builtin(char *str);
+void builtin(t_minishell *ms, t_node *node);
 
 //
 // minishell
