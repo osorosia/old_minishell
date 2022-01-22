@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/22 02:19:01 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/22 02:24:33 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ struct s_node {
 
 typedef struct s_env t_env;
 struct s_env {
-	t_env	*next;	// linked list
+	t_env	*next;	// doubly linked list
+	t_env	*prev;	// doubly linked list
 	char	*name;	// e.g. PATH
 	char	*body;	// e.g. /usr/bin:/bin
 };
