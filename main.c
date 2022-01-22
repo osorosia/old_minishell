@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:41 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/21 15:11:50 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/22 10:10:06 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ char *get_prompt() {
 
 int main(int argc, char **argv, char **envp) {
     t_minishell *ms = init_minishell(envp);
+    int sts;
     
     using_history();
     read_history(".my_history"); // [ToDo]historyファイルが無いときの動作の検証
@@ -30,6 +31,17 @@ int main(int argc, char **argv, char **envp) {
         char *prompt = get_prompt();
         char *str = readline(prompt);
         free(prompt);
+
+        // check
+        pid_t pid = fork();
+        if (pid == 0) {
+            t_token *tok = lexer(str);
+            t_node *node = parser(tok);
+            exit(0);
+        }
+        wait(&sts);
+        if (sts != 0)
+            continue;
 
         // lexer
         t_token *tok = lexer(str);
