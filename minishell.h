@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/22 01:56:32 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/22 02:19:01 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,7 @@ void pwd();
 void cd(t_minishell *ms, t_node *node);
 void echo(t_minishell *ms, t_node *node);
 void export(t_minishell *ms, t_node *node);
+void env(t_minishell *ms, t_node *node);
 
 //
 // minishell
