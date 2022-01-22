@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/22 02:24:33 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/22 02:36:15 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ void cd(t_minishell *ms, t_node *node);
 void echo(t_minishell *ms, t_node *node);
 void export(t_minishell *ms, t_node *node);
 void env(t_minishell *ms, t_node *node);
+void unset(t_minishell *ms, t_node *node);
 
 //
 // minishell
@@ -160,6 +161,7 @@ bool check_x(char *path);
 t_minishell *init_minishell(char *envp[]);
 void 		free_minishell(t_minishell *ms);
 void 		add_env(t_minishell *ms, char *str);
+void        rm_env(t_minishell *ms, char *name);
 t_env   	*find_env(t_minishell *ms, char *name);
 char        **get_paths(t_minishell *ms);
 char 		**create_cmds(t_node *cmds);

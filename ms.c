@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:03:29 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/21 00:54:03 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/22 02:48:13 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,18 @@ t_minishell *init_minishell(char *envp[]) {
     return (ms);
 }
 
+void free_env(t_env *env) {
+    free(env->name);
+    free(env->body);
+    free(env);
+}
+
 void free_minishell(t_minishell *ms) {
     t_env *next;
 
     while (ms->envs) {
         next = ms->envs->next;
-        free(ms->envs);
+        free_env(ms->envs);
         ms->envs = next;
     }
     free(ms);
@@ -46,12 +52,29 @@ void add_env(t_minishell *ms, char *str) {
         return;
     }
     
-    env = malloc(sizeof(t_env));
+    env = ft_calloc(1, sizeof(t_env));
     env->name = name;
     env->body = body;
     env->next = ms->envs;
+    env->prev = NULL;
+    if (ms->envs)
+        ms->envs->prev = env;
     ms->envs = env;
     ms->env_size++;
+}
+
+void rm_env(t_minishell *ms, char *name) {
+    t_env *env = find_env(ms, name);
+    if (env == NULL)
+        return ;
+    
+    t_env *prev = env->prev;
+    t_env *next = env->next;
+    if (prev)
+        prev->next = next;
+    if (next)
+        next->prev = prev;
+    free_env(env);
 }
 
 t_env   *find_env(t_minishell *ms, char *name) {

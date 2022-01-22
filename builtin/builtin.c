@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:55:43 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/22 02:19:18 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/22 02:37:04 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void builtin(t_minishell *ms, t_node *node) {
     else if (!strncmp(node->cmds->str, "export", ft_strlen("export") + 1))
         export(ms, node);
     else if (!strncmp(node->cmds->str, "unset", ft_strlen("unset") + 1))
-        printf("unset\n");
+        unset(ms, node);
     else if (!strncmp(node->cmds->str, "env", ft_strlen("env") + 1))
         env(ms, node);
     else if (!strncmp(node->cmds->str, "exit", ft_strlen("exit") + 1)) {
