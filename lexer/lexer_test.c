@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:16:07 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/21 00:34:34 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/24 06:04:51 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,25 +100,47 @@ void test_quote() {
     t_token *tok = lexer(p);
     t_token *head = tok;
 
-    assert_token(&tok, TK_OP,   "'");
-    assert_token(&tok, TK_WORD, "foo0");
-    assert_token(&tok, TK_OP,   "'");
+    assert_token(&tok, TK_WORD, "'foo0'");
+    assert_token(&tok, TK_WORD, "\"foo1\"");
+    assert_token(&tok, TK_WORD, "''foo2''");
+    assert_token(&tok, TK_WORD, "\"\"foo3\"\"");
 
-    assert_token(&tok, TK_OP,   "\"");
-    assert_token(&tok, TK_WORD, "foo1");
-    assert_token(&tok, TK_OP,   "\"");
+    assert_token(&tok, TK_EOF,  "");
 
-    assert_token(&tok, TK_OP,   "'");
-    assert_token(&tok, TK_OP,   "'");
-    assert_token(&tok, TK_WORD, "foo2");
-    assert_token(&tok, TK_OP,   "'");
-    assert_token(&tok, TK_OP,   "'");
+    free_token(head);
+    print_end();
+}
 
-    assert_token(&tok, TK_OP,   "\"");
-    assert_token(&tok, TK_OP,   "\"");
-    assert_token(&tok, TK_WORD, "foo3");
-    assert_token(&tok, TK_OP,   "\"");
-    assert_token(&tok, TK_OP,   "\"");
+void test_quote_empty() {
+    char *p = "'' \"\" '''' \"\"\"\"";
+    print_start(p);
+
+    t_token *tok = lexer(p);
+    t_token *head = tok;
+
+    assert_token(&tok, TK_WORD, "''");
+    assert_token(&tok, TK_WORD, "\"\"");
+    assert_token(&tok, TK_WORD, "''''");
+    assert_token(&tok, TK_WORD, "\"\"\"\"");
+
+    assert_token(&tok, TK_EOF,  "");
+
+    free_token(head);
+    print_end();
+}
+
+// a'a'a b"b"b a' a 'a' a 'a b" b "b" b "b
+void test_quote_word() {
+    char *p = "a'a'a b\"b\"b a' a 'a' a 'a b\" b \"b\" b \"b";
+    print_start(p);
+
+    t_token *tok = lexer(p);
+    t_token *head = tok;
+
+    assert_token(&tok, TK_WORD, "a'a'a");
+    assert_token(&tok, TK_WORD, "b\"b\"b");
+    assert_token(&tok, TK_WORD, "a' a 'a' a 'a");
+    assert_token(&tok, TK_WORD, "b\" b \"b\" b \"b");
 
     assert_token(&tok, TK_EOF,  "");
 
@@ -142,6 +164,7 @@ int main(int argc, char **argv) {
     test_pipe();        // foo0|foo1 | foo2 || foo3
     test_redirect();    // foo0>foo1>>foo2<foo3<<foo4<<<foo5>>>foo6
     test_quote();       // 'foo0' "foo1" ''foo2'' ""foo3""
-
+    test_quote_empty(); // '' "" '''' """"
+    test_quote_word();  // a'a'a b"b"b a' a 'a' a 'a b" b "b" b "b
     printf("lexer OK==============================\n");
 }

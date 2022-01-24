@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:16:09 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/21 00:34:34 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/24 05:52:39 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_token	*new_token(t_token_kind kind, char *p, size_t len)
 
 size_t get_operator_len(char *p)
 {
-	const char *kw[] = {"<<", ">>", "<", ">", "|", "'", "\"", NULL};
+	const char *kw[] = {"<<", ">>", "<", ">", "|", NULL};
 	size_t  i;
 
 	i = 0;
@@ -45,8 +45,26 @@ size_t  get_word_len(char *p)
 	size_t  len;
 
 	len = 0;
-	while (!ft_strchr(" ><|'\"", p[len]))
-		len++;
+	while (!ft_strchr(" ><|", p[len])) {
+		while (!ft_strchr(" ><|'\"", p[len]))
+			len++;
+		if (p[len] == '\'') {
+			len++;
+			while (p[len] && p[len] != '\'')
+				len++;
+			if (p[len] == '\0')
+				error("lexer error: expected '\n");
+			len++;
+		}
+		if (p[len] == '"') {
+			len++;
+			while (p[len] && p[len] != '"')
+				len++;
+			if (p[len] == '\0')
+				error("lexer error: expected \"\n");
+			len++;
+		}
+	}
 	return (len);
 }
 
