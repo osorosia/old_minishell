@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:55:43 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/22 02:37:04 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/24 05:24:25 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ bool check_builtin(char *str) {
 }
 
 void builtin(t_minishell *ms, t_node *node) {
-    // char **strs = 
     if (!strncmp(node->cmds->str, "echo", ft_strlen("echo") + 1))
         echo(ms, node);
     else if (!strncmp(node->cmds->str, "cd", ft_strlen("cd") + 1))
