@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:03:29 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/22 02:48:13 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/24 05:26:51 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void rm_env(t_minishell *ms, char *name) {
     
     t_env *prev = env->prev;
     t_env *next = env->next;
+    if (!prev)
+        ms->envs = next;
     if (prev)
         prev->next = next;
     if (next)
