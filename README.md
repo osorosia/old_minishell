@@ -28,8 +28,7 @@ make all
 ```
 
 ## 構成
-`[input]->[lexer]->[parser]->[expander]->[command exec]`のデータの流れで作成
-しました。
+`[input]->[lexer]->[parser]->[expander]->[command exec]`のデータの流れで作成しました。
 
 ### input
 ユーザーからの入力を受け取ります。minishellでは`readline`ライブラリを使用しました。`readline`はユーザから編集機能付きで1行受け取ります。カーソルキー受付やコマンド履歴機能を簡単に搭載できます。
