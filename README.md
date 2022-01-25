@@ -4,10 +4,10 @@ minishellはbashライクの小さなシェルです。私が現在通ってい�
 
 ## 使用方法
 - Ubuntu
-```sh
-$ sudo apt install libreadline-dev
-$ make all
-$ ./minishell
+```bash
+sudo apt install libreadline-dev
+make all
+./minishell
 
 (minishell)> # input command
 ```
