@@ -27,6 +27,16 @@ make all
 (minishell)> # input command
 ```
 
+## 機能
+- プロンプト表示
+- コマンド履歴機能
+- `|`
+- `<<`, `<`, `>>`, `>`
+- `'`, `"`
+- `$`
+- Builtin:
+    - `echo`, `cd`, `pwd`, `ecport`, `unset`, `env`, `exit`
+
 ## 構成
 下記のデータの流れで作成しています。
 1. input
