@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 10:17:12 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/24 06:37:19 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/25 09:39:38 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,53 @@ void filename_generation(t_minishell *ms, t_node *node) {
 }
 
 char *var_expansion_str(t_minishell *ms, char *str) {
-    return str;
+    char *ret = ft_calloc(1, sizeof(char));
+    
+    long i = 0;
+    while (str[i] != '\0') {
+        // $$
+        if (str[i] == '$' && str[i + 1] == '$') {
+            ret = ft_strjoin_with_free(ret, true, "$$", false);
+            i += 2;
+            continue;
+        }
+
+        // $\0
+        if (str[i] == '$' && str[i + 1] == '\0') {
+            ret = ft_strjoin_with_free(ret, true, "$", false);
+            break;
+        }
+
+        // $var
+        if (str[i] == '$') {
+            i++;
+            long j = 0;
+            while (str[i + j] != '$' && str[i + j] != '\'' && str[i + j] != '"' && str[i + j] != '\0')
+                j++;
+            char *var_name = ft_strndup(&(str[i]), j);
+            t_env *env = find_env(ms, var_name);
+            free(var_name);
+            if (env)
+                ret = ft_strjoin_with_free(ret, true, env->body, false);
+            i += j;
+            continue;
+        }
+
+        long j = 0;
+        while (str[i + j] != '\0' && str[i + j] != '$') {
+            if (str[i + j] == '\'') {
+                j++;
+                while (str[i + j] != '\'')
+                    j++;
+            }
+            j++;
+        }
+        char *tmp = ft_strndup(&(str[i]), j); 
+        ret = ft_strjoin_with_free(ret, true, tmp, true);
+        i += j;
+    }
+    free(str);
+    return ret;
 }
 
 char *rm_quote(char *str) {
