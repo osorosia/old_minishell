@@ -13,7 +13,8 @@ make all
 ```
 
 ## 構成
-`[input]->[lexer]->[parser]->[expander]->[command exec]`のデータの流れで作成しました。
+`[input]->[lexer]->[parser]->[expander]->[command exec]`のデータの流れで作成
+しました。
 
 ### input
 ユーザーからの入力を受け取ります。minishellでは`readline`ライブラリを使用しました。`readline`はユーザから編集機能付きで1行受け取ります。カーソルキー受付やコマンド履歴機能を簡単に実装することができます。
@@ -83,6 +84,35 @@ parser::::::::::::::
     cmds   : 'cat' 
     red_out: 'file' # 標準出力のリダイレクト
 ```
+
+### expander
+expanderでは下記のことを行います。
+
+1. 変数展開
+1. `'`, `"`の削除
+1. コマンドのパス取得
+
+変数展開では$varをvar変数の値に置換します。登録されている環境変数はexportやenvで確認することができます。
+
+変数展開後は、`'`と`"`が不要になったので削除します。
+
+コマンドのパス取得では`ls`->`/bin/ls`の変換を行います。シェルのコマンドは基本的に実行ファイルです（ビルトインコマンドを除く）。コマンドを入力すると`$PATH`に登録されたパスを前から探索し、見つかったファイルを実行します。見つからなかった場合は標準エラー出力に`command not found`を出力します。
+
+`minishell`をデバッグモードで実行すると、コマンド実行時にexpanderの結果を見ることができます。
+```sh
+(minishell)> pwd | cat -e | foo
+expander::::::::::::::
+    cmds   : 'pwd' 
+        - builtin
+    ----PIPE----
+    cmds   : 'cat' '-e' 
+        - path: /bin/cat (exist)
+    ----PIPE----
+    cmds   : 'foo'
+```
+
+### exec
+
 
 ## 42 Tokyo
 
