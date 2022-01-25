@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 01:44:27 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/22 02:15:50 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/25 10:14:31 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,23 @@ void export(t_minishell *ms, t_node *node) {
     }
 
     while (node) {
-        if (ft_strchr(node->str, '=')) {
+        char *plus_eq = ft_strnstr(node->str, "+=", ft_strlen(node->str));
+        char *eq = ft_strchr(node->str, '=');
+        if (plus_eq && plus_eq < eq) {
+            char *name = ft_strndup(node->str, plus_eq - node->str);
+            char *body = ft_strdup(plus_eq + 2);
+            t_env *env = find_env(ms, name);
+            if (env) {
+                env->body = ft_strjoin_with_free(env->body, true, body, false);
+            } else {
+                char *new_env = ft_strjoin_with_free(name, false, "=", false);
+                new_env = ft_strjoin_with_free(new_env, true, body, false);
+                add_env(ms, new_env);
+            }
+            free(name);
+            free(body);
+        }
+        else {
             add_env(ms, node->str);
         }
         node = node->next;
