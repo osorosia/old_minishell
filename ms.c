@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:03:29 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/24 05:26:51 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/26 12:23:29 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,27 @@ void free_minishell(t_minishell *ms) {
 
 void add_env(t_minishell *ms, char *str) {
     t_env *env;
+    char *name;
+    char *body;
 
-    char *name = ft_substr(str, 0, ft_strlen_to_c(str, '='));
-    char *body = ft_substr(ft_strchr(str, '=') + 1, 0, ft_strlen(ft_strchr(str, '=') + 1));
+    if (!ft_strchr(str, '=')) {
+        env = find_env(ms, str);
+        if (env)
+            return ;
+        name = ft_strdup(str);
+        body = NULL;
+    }
+    else {
+        name = ft_substr(str, 0, ft_strlen_to_c(str, '='));
+        body = ft_substr(ft_strchr(str, '=') + 1, 0, ft_strlen(ft_strchr(str, '=') + 1));
 
-    env = find_env(ms, name);
-    if (env) {
-        free(name);
-        free(env->body);
-        env->body = body;
-        return;
+        env = find_env(ms, name);
+        if (env) {
+            free(name);
+            free(env->body);
+            env->body = body;
+            return;
+        }
     }
     
     env = ft_calloc(1, sizeof(t_env));
