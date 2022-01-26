@@ -6,14 +6,17 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 01:44:27 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/25 10:14:31 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/26 12:28:48 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 void print_export(t_env *env) {
-    printf("declare -x %s=\"%s\"", env->name, env->body);
+    if (env->body == NULL) 
+        printf("declare -x %s", env->name);
+    else
+        printf("declare -x %s=\"%s\"", env->name, env->body);
     printf("\n");
 }
 
