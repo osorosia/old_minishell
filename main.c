@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:41 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/22 10:10:06 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/27 15:02:20 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ int main(int argc, char **argv, char **envp) {
     int sts;
     
     using_history();
-    read_history(".my_history"); // [ToDo]historyファイルが無いときの動作の検証
+    // read_history(".my_history"); // [ToDo]historyファイルが無いときの動作の検証
     while (1) {
         char *prompt = get_prompt();
         char *str = readline(prompt);
         free(prompt);
+        add_history(str);
 
         // check
         pid_t pid = fork();
@@ -65,7 +66,6 @@ int main(int argc, char **argv, char **envp) {
         exec(ms, node);
 
         free_node(node);
-        add_history(str);
     }
-    write_history(".my_history");
+    // write_history(".my_history");
 }
