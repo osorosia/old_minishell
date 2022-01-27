@@ -6,13 +6,15 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 01:44:27 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/27 14:10:48 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/27 14:27:03 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 void print_export(t_env *env) {
+    if (ft_strcmp(env->name, "_") == 0)
+        return;
     if (env->body == NULL) 
         printf("declare -x %s", env->name);
     else
