@@ -21,7 +21,7 @@ minishellを提出するには、下記の課題をクリアする必要があ�
 - Ubuntu
 ```bash
 sudo apt install libreadline-dev
-make all
+make all # or make debug (DEBUG mode)
 ./minishell
 
 (minishell)> # input command
