@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:03:29 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/27 14:34:36 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/27 14:56:17 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@ t_minishell *init_minishell(char *envp[]) {
     int i = 0;
     while (envp && envp[i])
         add_env(ms, envp[i++]);
+
+    // SHLVL
+    t_env *env = find_env(ms, "SHLVL");
+    if (env && env->body) {
+        int num = ft_atoi(env->body);
+        char *body = ft_itoa(num + 1);
+        free(env->body);
+        env->body = body;
+    }
+    else
+        add_env(ms, "SHLVL=1");
+
     return (ms);
 }
 
