@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:03:29 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/27 14:10:23 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/27 14:34:36 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,10 @@ char **create_envp(t_env *env) {
     char **strs = (char **)ft_calloc(size + 1, sizeof(char *));
     int i = 0;
     while (env) {
-        strs[i] = ft_strjoin(env->name, "=");
-        strs[i] = ft_strjoin_with_free(strs[i], true, env->body, false);
+        if (env->body) {
+            strs[i] = ft_strjoin(env->name, "=");
+            strs[i] = ft_strjoin_with_free(strs[i], true, env->body, false);
+        }
         i++;
         env = env->next;
     }
