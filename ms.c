@@ -6,13 +6,14 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:03:29 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/27 14:56:17 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/27 15:14:09 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 t_minishell *init_minishell(char *envp[]) {
+    t_env *env;
     t_minishell *ms = ft_calloc(1, sizeof(t_minishell));
     
     int i = 0;
@@ -20,7 +21,7 @@ t_minishell *init_minishell(char *envp[]) {
         add_env(ms, envp[i++]);
 
     // SHLVL
-    t_env *env = find_env(ms, "SHLVL");
+    env = find_env(ms, "SHLVL");
     if (env && env->body) {
         int num = ft_atoi(env->body);
         char *body = ft_itoa(num + 1);
@@ -29,6 +30,14 @@ t_minishell *init_minishell(char *envp[]) {
     }
     else
         add_env(ms, "SHLVL=1");
+
+    // SHELL
+    env = find_env(ms, "SHELL");
+    char *body = ft_strjoin_with_free(get_pwd(), true, "/minishell", false);
+    if (env && env->body)
+        env->body = body;
+    else
+        add_env(ms, ft_strjoin_with_free("SHELL=", false, body, true));
 
     return (ms);
 }

@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:15:44 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/27 12:16:57 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/27 15:09:58 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ void debug(char *format, ...);
 char *ft_strjoin_with_free(char *s1, bool f1, char *s2, bool f2);
 bool check_x(char *path);
 int ft_strcmp(char *s1, char *s2);
+char *get_pwd();
 
 // ms.c
 t_minishell *init_minishell(char *envp[]);

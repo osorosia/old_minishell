@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/17 06:16:30 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/26 15:09:11 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/27 15:13:36 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,13 @@ int ft_strcmp(char *s1, char *s2) {
     while (p1[i] == p2[i] && p1[i] != '\0')
         i++;
     return ((int)p1[i] - p2[i]);
+}
+
+char *get_pwd() {
+    char buf[512];
+    char *str;
+
+    getcwd(buf, 512);
+    str = ft_strdup(buf);
+    return str;
 }
