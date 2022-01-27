@@ -156,6 +156,7 @@ void error(char *str);
 void debug(char *format, ...);
 char *ft_strjoin_with_free(char *s1, bool f1, char *s2, bool f2);
 bool check_x(char *path);
+int ft_strcmp(char *s1, char *s2);
 
 // ms.c
 t_minishell *init_minishell(char *envp[]);
@@ -166,5 +167,6 @@ t_env   	*find_env(t_minishell *ms, char *name);
 char        **get_paths(t_minishell *ms);
 char 		**create_cmds(t_node *cmds);
 char        **create_envp(t_env *env);
+void 		sort_env(t_minishell *ms);
 
 #endif

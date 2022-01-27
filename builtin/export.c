@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/22 01:44:27 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/26 12:28:48 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/27 14:10:48 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void print_export(t_env *env) {
 void export(t_minishell *ms, t_node *node) {
     node = node->cmds->next;
     if (node == NULL) {
+        sort_env(ms);
         t_env *env = ms->envs;
         while (env) {
             print_export(env);

@@ -6,7 +6,7 @@
 /*   By: rnishimo <rnishimo@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 12:03:29 by rnishimo          #+#    #+#             */
-/*   Updated: 2022/01/26 12:23:29 by rnishimo         ###   ########.fr       */
+/*   Updated: 2022/01/27 14:10:23 by rnishimo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,15 @@ void add_env(t_minishell *ms, char *str) {
             return;
         }
     }
+
+    t_env *next = ms->envs;
     
     env = ft_calloc(1, sizeof(t_env));
     env->name = name;
     env->body = body;
-    env->next = ms->envs;
-    env->prev = NULL;
-    if (ms->envs)
-        ms->envs->prev = env;
+    env->next = next;
+    if (next)
+        next->prev = env;
     ms->envs = env;
     ms->env_size++;
 }
@@ -142,4 +143,60 @@ char **create_envp(t_env *env) {
         env = env->next;
     }
     return strs;
+}
+
+void swap_env(t_env *env) {
+    t_env *next = env->next;
+    
+    next->prev = env->prev;
+    if (next->prev)
+        next->prev->next = next;
+    env->next = next->next;
+    if (env->next)
+        env->next->prev = env;
+    next->next = env;
+    env->prev = next;
+}
+
+void debug_env(t_env *env) {
+    if (!env)
+    {
+        printf("(null)\n");
+        return ;
+    }
+    if (env->prev)
+        printf("%s <- ", env->prev->name);
+    else
+        printf("(null) <- ");
+    printf("%s", env->name);
+    if (env->next)
+        printf(" -> %s", env->next->name);
+    else
+        printf(" -> (null)");
+    printf("\n");
+}
+
+void sort_env(t_minishell *ms) {
+    long size = 0;
+    t_env *env = ms->envs;
+
+    if (env == NULL)
+        return ;
+
+    while (env) {
+        size++;
+        env = env->next;
+    }
+
+    while (size--) {
+        env = ms->envs;
+        while (env->next) {
+            if (ft_strcmp(env->name, env->next->name) > 0)
+                swap_env(env);
+            else
+                env = env->next;
+        }
+        while (ms->envs->prev != NULL)
+            ms->envs = ms->envs->prev;
+    }
 }
