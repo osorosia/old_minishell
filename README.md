@@ -35,7 +35,7 @@ make all # or make debug (DEBUG mode)
 - `'`, `"`
 - `$`
 - Builtin:
-    - `echo`, `cd`, `pwd`, `ecport`, `unset`, `env`, `exit`
+    - `echo`, `cd`, `pwd`, `export`, `unset`, `env`, `exit`
 
 ## 構成
 下記のデータの流れで作成しています。
@@ -143,7 +143,7 @@ expander::::::::::::::
 ### exec
 
 ビルトインコマンドは実装する必要があります。`minishell`は次のコマンドを実装しました。
-- `echo`, `cd`, `pwd`, `ecport`, `unset`, `env`, `exit`
+- `echo`, `cd`, `pwd`, `export`, `unset`, `env`, `exit`
 
 実行ファイルの場合、`execve`関数によってコマンドを実行します。ただし、`execve`関数は呼び出し元のプロセスのスタックを実行するプログラムの内容に上書きするため、そのまま呼び出すとコマンド終了とともに`minishell`が落ちてしまいます。落ちないようにするためには、`fork`関数で子プロセスを作成し、子プロセス上で`execve`関数を呼び出せばよいです。
 
